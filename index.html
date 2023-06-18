@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>FOIA Forager</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📑</text></svg>">
+	<meta name="description" content="A scrappy tool to assist with document review for FOIA requests">
+	<meta name="keywords" content="Kiran, Wattamwar, FOIA, document review, law, legal technology">
+	<meta name="author" content="Kiran Wattamwar">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel='stylesheet' href='css/styles.css'/>
+	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+
+	<div id="left-panel" class="horizontal-row">
+		<div id="pdf-section">
+			<strong class="purple-text">To get started, upload a PDF and a CSV if you already have one.</strong><br><br>
+			⏳ Generating a CSV will pre-process the PDF for you to autofill some data (e.g. FOIA exemptions), but may take up to 20 minutes to complete. 
+		</div>
+	</div>
+	
+	<div id="right-panel" class="horizontal-row">
+		<div id="right-panel-top">
+			<h4 class="purple-text">Enter and confirm data:</h4>
+
+			<form action="/action_page.php">
+				<label for="filename">Filename</label>
+				<input type="text" id="filename" name="filename" placeholder="e.g. 2022-ICLI-0037...">
+
+				<div class="checkbox-group">
+					<input type="checkbox" class="custom-checkbox" id="is-file-group" id="is-file-group"></form>
+					<label class="checkbox-label" for="is-file-group">Group this page with previous pages</label>
+				</div>
+
+				<div id="possible-grouping" class="grouped">
+					<div id="grouped-helper-text" class="grouped-show" >The <strong>entire page group</strong> should be represented by this data, not just the current page.</div>
+					<label for="doctitle">Doc. title / email subject</label>
+					<input type="text" id="doctitle" name="doctitle" placeholder="e.g. Re: Contract Proposal...">
+
+					<label class="grouped-show" for="bates-start" disabled>Bates start</label>
+					<input class="grouped-show" type="text" id="bates-start" name="bates-start" placeholder="Bates start" disabled>
+
+					<label class="grouped-show" for="bates-end">Bates end</label>
+					<input class="grouped-show" type="text" id="bates-end" name="bates-end" placeholder="Bates end">
+
+					<label class="grouped-hide" id="bates-singlet-label" for="bates-singlet">Bates page</label>
+					<input class="grouped-hide"type="text" id="bates-singlet" name="bates-singlet" placeholder="Bates page">
+
+					<label for="foia-request-cat">FOIA request category</label>
+					<input type="text" id="foia-request-cat" name="foia-request-cat" placeholder="e.g. (3)">
+
+					<label for="foia-exemptions">FOIA exemptions</label>
+					<input type="text" id="foia-exemptions" name="foia-exemptions" placeholder="e.g. (b)(7)(E)">
+
+					<label for="description-of-contents">Description of contents</label>
+					<input type="text" id="description-of-contents" name="description-of-contents" placeholder="e.g. Email regarding...">
+
+					<label for="other">Other information</label>
+					<input type="text" id="other" name="other" placeholder="e.g. FOIA-able documents mentioned">
+				</div>
+			</form>
+		</div>
+
+		<div id="right-panel-bottom" class="row">
+			<input id="previous-btn" type="submit" value="← Previous">
+			<input id="next-btn" type="submit" value="Next →">
+		</div>
+
+
+
+	</div>
+
+
+
+</body>
+</html>
