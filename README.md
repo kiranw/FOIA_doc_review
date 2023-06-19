@@ -24,3 +24,4 @@ Scrapes records from FOIA document review PDFs to CSVs with extracted informatio
 ```
 python3 -m http.server
 ```
+Then, go to http://localhost:8000/ in your browser (your server logs should tell you where this is running).
