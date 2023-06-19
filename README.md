@@ -10,7 +10,7 @@ Scrapes records from FOIA document review PDFs to CSVs with extracted informatio
 
 
 
-#### 🟢 To run
+#### ✨ To run
 * Navigate to this folder in the terminal
 ```
 python3 -m http.server
