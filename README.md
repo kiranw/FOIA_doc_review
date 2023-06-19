@@ -1,6 +1,7 @@
 # FOIA Doc Review Scraper
 Scrapes records from FOIA document review PDFs to CSVs with extracted information
 
+<br>
 
 #### 🎯 TODO • Improvements 
 * Group pages ranges together into a single row
@@ -8,7 +9,15 @@ Scrapes records from FOIA document review PDFs to CSVs with extracted informatio
 * Text summarization?
 * Infer document title
 
+<br>
 
+#### 📦 Dependencies
+* Python3
+* ImageMagick
+* Pillow
+* Pytesseract
+
+<br>
 
 #### ✨ To run
 * Navigate to this folder in the terminal
