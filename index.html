@@ -14,16 +14,65 @@
 	<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 	<link rel='stylesheet' href='css/styles.css'/>
 	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'/>
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js" integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="js/main.js"></script>
 </head>
 <body>
 
 	<div id="left-panel" class="horizontal-row">
-		<div id="pdf-section">
+		<div id="left-ui">
+			<div class="btn-group">
+			
+				<div>
+					<i class="fa fa-bars"></i>
+				</div>
+
+				<div class="dropdown row" id="choose-files">
+					<i class="fa fa-sharp fa-paperclip"></i><span id="selected-files">No files selected</span><i class="fa fa-caret-down"></i>
+					<div class="dropdown-content">
+						<div>
+							<i class="fa fa-sharp fa-file"></i>PDF: <input type="file" id="selectedFile" />
+						</div>
+						<div>
+							<i class="fa fa-sharp fa-table"></i>CSV:  <input type="file" id="selectedCSV" />
+						</div>	
+					</div>
+				</div>
+			
+				<div class="row">
+					<i class="fa fa-sharp fa-light fa-sharp fa-file"></i>
+					<input type="text" id="page_num" name="page_num" placeholder="1">
+					<span id="page_count" hidden></span>
+				</div>
+			
+			</div>
+			<div class="btn-group" id="left-ui-right-group">
+				<div id="export">
+					<i class="fa fa-sharp fa-download"></i>
+					Export CSV
+				</div>
+			</div>			
+		</div>
+
+		<div id="left-empty-state">
 			<strong class="purple-text">To get started, upload a PDF and a CSV if you already have one.</strong><br><br>
 			⏳ Generating a CSV will pre-process the PDF for you to autofill some data (e.g. FOIA exemptions), but may take up to 20 minutes to complete. 
 		</div>
+
+		<div id="pdf-section">
+				<!-- <div>
+					<button id="previous-btn" class="previous" >Previous</button>
+					<button id="next-btn" class="next" >Next</button>
+					&nbsp; &nbsp;
+				</div> -->
+			<canvas id="pdf-canvas">	
+			</canvas>
+		</div>
+
+
+		
 	</div>
 	
 	<div id="right-panel" class="horizontal-row">
@@ -31,16 +80,16 @@
 			<h4 class="purple-text">Enter and confirm data:</h4>
 
 			<form action="/action_page.php">
-				<label for="filename">Filename</label>
-				<input type="text" id="filename" name="filename" placeholder="e.g. 2022-ICLI-0037...">
-
 				<div class="checkbox-group">
 					<input type="checkbox" class="custom-checkbox" id="is-file-group" id="is-file-group"></form>
 					<label class="checkbox-label" for="is-file-group">Group this page with previous pages</label>
 				</div>
 
 				<div id="possible-grouping" class="grouped">
-					<div id="grouped-helper-text" class="grouped-show" >The <strong>entire page group</strong> should be represented by this data, not just the current page.</div>
+					<!-- <div id="grouped-helper-text" class="grouped-show" >The <strong>entire page group</strong> should be represented by this data, not just the current page.</div> -->
+					<label for="filename">Filename</label>
+					<input type="text" id="filename" name="filename" placeholder="e.g. 2022-ICLI-0037...">
+
 					<label for="doctitle">Doc. title / email subject</label>
 					<input type="text" id="doctitle" name="doctitle" placeholder="e.g. Re: Contract Proposal...">
 
@@ -69,8 +118,8 @@
 		</div>
 
 		<div id="right-panel-bottom" class="row">
-			<input id="previous-btn" type="submit" value="← Previous">
-			<input id="next-btn" type="submit" value="Next →">
+			<input id="previous-btn" class="previous" type="submit" value="← Previous">
+			<input id="next-btn" class="next" type="submit" value="Next →">
 		</div>
 
 
